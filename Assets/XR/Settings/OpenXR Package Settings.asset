@@ -183,7 +183,7 @@ MonoBehaviour:
   company: Qualcomm
   priority: 0
   required: 0
-  DirectMemoryAccessConversion: 0
+  DirectMemoryAccessConversion: 1
   CpuFrameCacheSize: 4
   HighPriorityAsyncConversion: 0
   CacheFrameBeforeAsyncConversion: 0
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1a99ebd75e49d1bc4152cccc8e2550, type: 3}
   m_Name: HitTestingFeature Android
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Hit Testing
   version: 0.26.0
   featureIdInternal: com.qualcomm.snapdragon.spaces.raycasting
@@ -582,7 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc47cb09ff09f84886c3843083dc0ef, type: 3}
   m_Name: FoveatedRenderingFeature Android
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Foveated Rendering
   version: 1.0.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.foveatedrendering
@@ -771,7 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb03d48a4e23493fba7b405178b6b3d, type: 3}
   m_Name: ImageTrackingFeature Android
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Image Tracking
   version: 1.0.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.imagetracking
@@ -886,7 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f28604357aa423280cce3487eaa981, type: 3}
   m_Name: SpatialAnchorsFeature Android
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Spatial Anchors
   version: 1.0.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.spatialanchors
@@ -947,7 +947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe60ae3ec987c14dbed80f4df07edeb, type: 3}
   m_Name: CompositionLayersFeature Android
   m_EditorClassIdentifier: 
-  m_enabled: 1
+  m_enabled: 0
   nameUi: Composition Layers (Experimental)
   version: 1.0.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.compositionlayers
