@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using Unity.Sentis;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,6 +56,7 @@ public class RunYOLO8n : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
+        StartCoroutine(RunInferencePeriodically(1f));
         ops = WorkerFactory.CreateOps(backend, null);
 
         labels = labelsAsset.text.Split('\n');
@@ -66,6 +68,15 @@ public class RunYOLO8n : MonoBehaviour
 
         if (_cameraManager != null)
             _cameraManager.frameReceived += OnFrameReceived;
+    }
+    IEnumerator RunInferencePeriodically(float interval)
+    {
+        while (true)
+        {
+            if (cameraTexture != null) // Ensure texture exists
+                ExecuteML(cameraTexture);
+            yield return new WaitForSeconds(interval);
+        }
     }
 
     void ModifyModel()
@@ -109,7 +120,7 @@ public class RunYOLO8n : MonoBehaviour
         cameraTexture.Apply();
         displayImage.texture = cameraTexture;
 
-        ExecuteML(cameraTexture);
+        //ExecuteML(cameraTexture);
     }
 
     void ExecuteML(Texture sourceTexture)
