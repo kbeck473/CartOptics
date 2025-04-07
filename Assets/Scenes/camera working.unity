@@ -682,6 +682,7 @@ MonoBehaviour:
   displayImage: {fileID: 1331568824}
   boxTexture: {fileID: 21300000, guid: f0cd988bca7624c4cbf47ad59ccec26c, type: 3}
   font: {fileID: 12800000, guid: f7d59fc35e69b3448ada4ee72d16fd2d, type: 3}
+  foodLabel: {fileID: 129653492}
   iouThreshold: 0.103
   scoreThreshold: 0.107
 --- !u!1 &351404580
@@ -1337,7 +1338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4014267704139081642, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4014267704139081645, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
       propertyPath: m_RootOrder

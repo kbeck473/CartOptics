@@ -32,6 +32,7 @@ public class RunYOLO8n : MonoBehaviour
     public RawImage displayImage;
     public Sprite boxTexture;
     public Font font;
+    public Text foodLabel;
 
     [Header("Inference Settings")]
     [SerializeField, Range(0, 1)] float iouThreshold = 0.5f;
@@ -103,6 +104,7 @@ public class RunYOLO8n : MonoBehaviour
         model.AddOutput("boxCoords");
         model.AddOutput("classIDs");
         model.AddOutput("NMS");
+        model.AddOutput("scores");
     }
 
     void OnFrameReceived(ARCameraFrameEventArgs args)
@@ -122,7 +124,6 @@ public class RunYOLO8n : MonoBehaviour
 
         //ExecuteML(cameraTexture);
     }
-
     void ExecuteML(Texture sourceTexture)
     {
         ClearAnnotations();
@@ -133,20 +134,45 @@ public class RunYOLO8n : MonoBehaviour
         var boxCoords = engine.PeekOutput("boxCoords") as TensorFloat;
         var NMS = engine.PeekOutput("NMS") as TensorInt;
         var classIDs = engine.PeekOutput("classIDs") as TensorInt;
+        var scores = engine.PeekOutput("scores") as TensorFloat;
 
         using var boxIDs = ops.Slice(NMS, new int[] { 2 }, new int[] { 3 }, new int[] { 1 }, new int[] { 1 });
         using var boxIDsFlat = boxIDs.ShallowReshape(new TensorShape(boxIDs.shape.length)) as TensorInt;
         using var output = ops.Gather(boxCoords, boxIDsFlat, 1);
         using var labelIDs = ops.Gather(classIDs, boxIDsFlat, 2);
+        using var gatheredScores = ops.Gather(scores, boxIDsFlat, 1);
 
         output.MakeReadable();
         labelIDs.MakeReadable();
+        gatheredScores.MakeReadable();
 
         float scaleX = displayImage.rectTransform.rect.width / imageWidth;
         float scaleY = displayImage.rectTransform.rect.height / imageHeight;
 
+        float maxConfidence = 0;
+        string bestLabel = "No detection";
+
         for (int n = 0; n < output.shape[1]; n++)
-            DrawBox(new Vector2(output[0, n, 0], output[0, n, 1]), new Vector2(output[0, n, 2], output[0, n, 3]), labels[labelIDs[0, 0, n]], n, scaleX, scaleY);
+        {
+            float currentConfidence = gatheredScores[0, n];
+            string currentLabel = labels[labelIDs[0, 0, n]];
+        
+            DrawBox( 
+                new Vector2(output[0, n, 0], output[0, n, 1]),
+                new Vector2(output[0, n, 2], output[0, n, 3]),
+                currentLabel, 
+                n, 
+                scaleX, 
+                scaleY); 
+
+            if (currentConfidence > maxConfidence)
+            {
+                maxConfidence = currentConfidence;
+                bestLabel = currentLabel;
+            }
+        }
+
+        foodLabel.text = bestLabel;
     }
 
     void DrawBox(Vector2 center, Vector2 size, string label, int id, float scaleX, float scaleY)
