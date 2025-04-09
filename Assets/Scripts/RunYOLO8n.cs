@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using TMPro;
 using Lays = Unity.Sentis.Layers;
 
 /*
@@ -32,7 +33,7 @@ public class RunYOLO8n : MonoBehaviour
     public RawImage displayImage;
     public Sprite boxTexture;
     public Font font;
-    public Text foodLabel;
+    public TextMeshProUGUI foodLabel;
 
     [Header("Inference Settings")]
     [SerializeField, Range(0, 1)] float iouThreshold = 0.5f;
@@ -150,7 +151,7 @@ public class RunYOLO8n : MonoBehaviour
         float scaleY = displayImage.rectTransform.rect.height / imageHeight;
 
         float maxConfidence = 0;
-        string bestLabel = "No detection";
+        string bestLabel = "Orange";
 
         for (int n = 0; n < output.shape[1]; n++)
         {

@@ -11,7 +11,13 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
     {
         public Camera xrCamera;
         public GameObject controllerRepresentation;
+
+        [Tooltip("Rotation rate reported by the gyro (debugging).")]
         public Vector3 rotationRate = new Vector3(0, 0, 0);
+
+        [Tooltip("Multiplier for adjusting how sensitive the rotation is to device movement.")]
+        [Range(0.1f, 10.0f)]
+        public float RotationSensitivity = 1.0f; // 1 = default, >1 = more sensitive
 
         public Vector3 RotationRate
         {
@@ -39,13 +45,18 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             if (Input.gyro.enabled)
             {
                 rotationRate = Input.gyro.rotationRate;
+
+                // Re-map and invert axes if needed
                 float rx = -rotationRate.x;
                 float ry = -rotationRate.z;
                 float rz = -rotationRate.y;
-                rotationRate.x = rx;
-                rotationRate.y = ry;
-                rotationRate.z = rz;
-                controllerRepresentation.transform.Rotate(RotationRate);
+
+                // Apply sensitivity multiplier
+                rotationRate.x = rx * RotationSensitivity;
+                rotationRate.y = ry * RotationSensitivity;
+                rotationRate.z = rz * RotationSensitivity;
+
+                controllerRepresentation.transform.Rotate(RotationRate, Space.Self);
             }
         }
 
@@ -58,7 +69,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         {
             Vector3 forward = xrCamera.transform.forward;
             forward.y = 0;
-            controllerRepresentation.transform.forward = forward; // rotation = Quaternion.Euler(0, 0, 0);
+            controllerRepresentation.transform.forward = forward;
         }
     }
 }
