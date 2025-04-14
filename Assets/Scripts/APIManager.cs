@@ -8,13 +8,11 @@ using TMPro;
 public class APIManager : MonoBehaviour
 {
     [SerializeField] private string gasURL;
-    // [SerializeField] private string prompt;
- 
     private string detectedObject;
     private string fullPrompt;
     public TextMeshProUGUI infoText;
     public TextMeshProUGUI itemText;
- 
+
     private void Update()
     {
         /*
@@ -39,7 +37,7 @@ public class APIManager : MonoBehaviour
             yield break; // Stop execution if no object is detected
         }
         */
-        string fullPrompt = $"Please provide a concise overview of an orange using the following template:   Fruit: [Fruit Name] Flavor: [Brief description of the taste profile] Nutritional Benefits: [Key nutrients and health benefits] Origin: [Where it's commonly grown or originally from] Common Uses: [Typical culinary or other uses] Allergy Info: [things to watch out for]  Keep the summary minimal and user-friendly. Also do not use bold font at all, meaning no ** around the headers like fruit. ALso please add a blank line of space in between each section such as fruit and flavor etc.";
+        string fullPrompt = $"Please provide a concise overview of a " + itemText.text +  " using the following template:   Food: [Food Name] Flavor: [Brief description of the taste profile] Nutritional Benefits: [Key nutrients and health benefits] Origin: [Where it's commonly grown or originally from] Common Uses: [Typical culinary or other uses] Allergy Info: [things to watch out for]  Keep the summary minimal and user-friendly. Also do not use bold font at all, meaning no ** around the headers like fruit. ALso please add a blank line of space in between each section such as fruit and flavor etc.";
         WWWForm form = new WWWForm();
         form.AddField("parameter", fullPrompt); // changed to detectedObject
         UnityWebRequest www = UnityWebRequest.Post(gasURL, form);

@@ -445,27 +445,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Fruit: Banana
-
-
-    Flavor: Sweet, creamy, and slightly tangy.
-
-
-    Nutritional
-    Benefits: Rich in potassium, vitamin B6, vitamin C, and fiber; supports heart
-    health and digestion.
-
-
-    Origin: Southeast Asia, widely cultivated in tropical
-    regions.
-
-
-    Common Uses: Eaten raw, in smoothies, baked goods, and desserts.
-
-
-    Allergy
-    Info: Rare, but can cause oral allergy syndrome or latex-fruit syndrome in sensitive
-    individuals.'
+  m_text: Detect item first and then press the generate button to display AI information...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -576,7 +556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.11553402, y: 0.24232858}
   m_AnchorMax: {x: 0.8976207, y: 0.7485079}
-  m_AnchoredPosition: {x: 225, y: 4.9999995}
+  m_AnchoredPosition: {x: 386, y: 4.9999995}
   m_SizeDelta: {x: -450, y: 10.000001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &129653493
@@ -609,8 +589,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Orange
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -634,14 +614,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71.15
+  m_fontSize: 72
   m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
