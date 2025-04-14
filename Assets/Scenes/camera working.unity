@@ -940,7 +940,7 @@ GameObject:
   - component: {fileID: 269962648}
   - component: {fileID: 269962647}
   m_Layer: 5
-  m_Name: Pause Button
+  m_Name: Detect Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1010,35 +1010,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 488469580}
-        m_TargetAssemblyTypeName: Qualcomm.Snapdragon.Spaces.Samples.CameraFrameAccessSampleController,
-          Assembly-CSharp
-        m_MethodName: OnPausePress
+      - m_Target: {fileID: 292562498}
+        m_TargetAssemblyTypeName: RunYOLO8n, Assembly-CSharp
+        m_MethodName: runML
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7825361}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 269962647}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1455,8 +1430,8 @@ MonoBehaviour:
   boxTexture: {fileID: 21300000, guid: f0cd988bca7624c4cbf47ad59ccec26c, type: 3}
   font: {fileID: 12800000, guid: f7d59fc35e69b3448ada4ee72d16fd2d, type: 3}
   foodLabel: {fileID: 129653494}
-  iouThreshold: 0.103
-  scoreThreshold: 0.107
+  iouThreshold: 0.545
+  scoreThreshold: 0.542
 --- !u!1 &292979460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,7 +1900,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Gen AI Information '
+  m_Text: 'User Cart:'
 --- !u!222 &481658217
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3853,7 +3828,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pause
+  m_Text: Detect
 --- !u!222 &2016244590
 CanvasRenderer:
   m_ObjectHideFlags: 0

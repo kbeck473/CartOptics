@@ -55,10 +55,18 @@ public class RunYOLO8n : MonoBehaviour
 
     List<GameObject> boxPool = new List<GameObject>();
 
+    // You can define this as a member variable or inside the function.
+    List<string> allowedFoodItems = new List<string> {
+    "banana", "apple", "sandwich", "orange",
+    "broccoli", "carrot", "hot dog", "pizza",
+    "donut", "cake"
+};
+
+
     void Start()
     {
         Application.targetFrameRate = 60;
-        StartCoroutine(RunInferencePeriodically(1f));
+        //StartCoroutine(RunInferencePeriodically(1f));
         ops = WorkerFactory.CreateOps(backend, null);
 
         labels = labelsAsset.text.Split('\n');
@@ -71,14 +79,19 @@ public class RunYOLO8n : MonoBehaviour
         if (_cameraManager != null)
             _cameraManager.frameReceived += OnFrameReceived;
     }
-    IEnumerator RunInferencePeriodically(float interval)
+    //IEnumerator RunInferencePeriodically(float interval)
+    //{
+    //    while (true)
+    //    {
+    //        if (cameraTexture != null) // Ensure texture exists
+    //            ExecuteML(cameraTexture);
+    //        yield return new WaitForSeconds(interval);
+    //    }
+    //}
+
+    public void runML()
     {
-        while (true)
-        {
-            if (cameraTexture != null) // Ensure texture exists
-                ExecuteML(cameraTexture);
-            yield return new WaitForSeconds(interval);
-        }
+        ExecuteML(cameraTexture);
     }
 
     void ModifyModel()
@@ -151,20 +164,26 @@ public class RunYOLO8n : MonoBehaviour
         float scaleY = displayImage.rectTransform.rect.height / imageHeight;
 
         float maxConfidence = 0;
-        string bestLabel = "Orange";
+        string bestLabel = "N/A";
 
         for (int n = 0; n < output.shape[1]; n++)
         {
             float currentConfidence = gatheredScores[0, n];
             string currentLabel = labels[labelIDs[0, 0, n]];
-        
+
+            //if (!allowedFoodItems.Contains(currentLabel.ToLower()))
+            //{
+            //    continue; // Skip this detection
+            //}
+
             DrawBox( 
-                new Vector2(output[0, n, 0], output[0, n, 1]),
-                new Vector2(output[0, n, 2], output[0, n, 3]),
-                currentLabel, 
-                n, 
-                scaleX, 
-                scaleY); 
+                    new Vector2(output[0, n, 0], output[0, n, 1]),
+                    new Vector2(output[0, n, 2], output[0, n, 3]),
+                    currentLabel, 
+                    n, 
+                    scaleX, 
+                    scaleY);
+            UpdateLabel(currentLabel);
 
             if (currentConfidence > maxConfidence)
             {
@@ -173,7 +192,7 @@ public class RunYOLO8n : MonoBehaviour
             }
         }
 
-        foodLabel.text = bestLabel;
+       // foodLabel.text = bestLabel;
     }
 
     void DrawBox(Vector2 center, Vector2 size, string label, int id, float scaleX, float scaleY)
@@ -183,6 +202,8 @@ public class RunYOLO8n : MonoBehaviour
         panel.transform.localPosition = new Vector3(center.x * scaleX - displayImage.rectTransform.rect.width / 2, -(center.y * scaleY - displayImage.rectTransform.rect.height / 2));
         panel.GetComponent<RectTransform>().sizeDelta = new Vector2(size.x * scaleX, size.y * scaleY);
         panel.GetComponentInChildren<Text>().text = label;
+
+
     }
 
     GameObject CreateNewBox()
@@ -201,6 +222,10 @@ public class RunYOLO8n : MonoBehaviour
     }
 
     void ClearAnnotations() => boxPool.ForEach(box => box.SetActive(false));
+
+    void UpdateLabel(string label) {
+        foodLabel.text = label;
+    }
 
     void OnDestroy()
     {
