@@ -5,6 +5,6 @@ public class LoadScene : MonoBehaviour
 {
     public void LoadNewScene()
     {
-        SceneManager.LoadScene("Camera Frame Access Sample");
+        SceneManager.LoadScene("camera working");
     }
 }
