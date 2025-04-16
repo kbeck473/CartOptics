@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 311466078}
   - component: {fileID: 311466077}
   m_Layer: 5
-  m_Name: Start Button (1)
+  m_Name: Start Button outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

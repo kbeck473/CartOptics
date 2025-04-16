@@ -176,14 +176,18 @@ public class RunYOLO8n : MonoBehaviour
             //    continue; // Skip this detection
             //}
 
-            DrawBox( 
+            if (allowedFoodItems.Contains(currentLabel))
+            {
+               DrawBox(
                     new Vector2(output[0, n, 0], output[0, n, 1]),
                     new Vector2(output[0, n, 2], output[0, n, 3]),
-                    currentLabel, 
-                    n, 
-                    scaleX, 
+                    currentLabel,
+                    n,
+                    scaleX,
                     scaleY);
-            UpdateLabel(currentLabel);
+                UpdateLabel(currentLabel);
+            }
+
 
             if (currentConfidence > maxConfidence)
             {
