@@ -1885,7 +1885,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1. Look at an object. Your AR glasses will automaticlaly detect what you
+  m_text: '1. Look at an object. Your AR glasses will automatically detect what you
     are looking at.
 
 
