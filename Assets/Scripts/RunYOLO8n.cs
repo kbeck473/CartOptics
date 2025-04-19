@@ -55,6 +55,9 @@ public class RunYOLO8n : MonoBehaviour
     const int numClasses = 80;
     const int maxOutputBoxes = 64;
 
+    public Button runMLButton;
+    private Text buttonText;
+
     List<GameObject> boxPool = new List<GameObject>();
 
     // You can define this as a member variable or inside the function.
@@ -89,7 +92,13 @@ public class RunYOLO8n : MonoBehaviour
         engine = WorkerFactory.CreateWorker(backend, model);
 
         if (_cameraManager != null)
+        {
             _cameraManager.frameReceived += OnFrameReceived;
+        }
+        Transform buttonTextTransform = runMLButton.gameObject.transform.GetChild(0);
+        buttonText = buttonTextTransform.GetComponent<Text>();
+
+
     }
     //IEnumerator RunInferencePeriodically(float interval)
     //{
@@ -100,10 +109,55 @@ public class RunYOLO8n : MonoBehaviour
     //        yield return new WaitForSeconds(interval);
     //    }
     //}
+    Coroutine inferenceCoroutine;
 
     public void runML()
     {
-        ExecuteML(cameraTexture);
+        if (inferenceCoroutine != null)
+        {
+            StopCoroutine(inferenceCoroutine);
+            inferenceCoroutine = null;
+        }
+        else
+        {
+            inferenceCoroutine = StartCoroutine(RunInferencePeriodically(2f));
+        }
+
+        UpdateDetectButtonUI();
+        StartCoroutine(EnableButtonAfterDelay(3f));
+    }
+
+    void UpdateDetectButtonUI()
+    {
+        if (inferenceCoroutine != null)
+        {
+            buttonText.text = "Stop";
+        }
+        else
+        {
+            buttonText.text = "Detect";
+        }
+
+        runMLButton.enabled = false;
+    }
+
+    IEnumerator EnableButtonAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        runMLButton.enabled = true;
+    }
+
+
+    IEnumerator RunInferencePeriodically(float interval)
+    {
+        while (true)
+        {
+            if (cameraTexture != null)
+            {
+                ExecuteML(cameraTexture);
+            }
+            yield return new WaitForSeconds(interval);
+        }
     }
 
     void ModifyModel()
