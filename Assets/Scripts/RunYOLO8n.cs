@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using Unity.Sentis;
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
@@ -33,7 +35,7 @@ public class RunYOLO8n : MonoBehaviour
     public RawImage displayImage;
     public Sprite boxTexture;
     public Font font;
-    public TextMeshProUGUI foodLabel;
+    public TextMeshProUGUI objectLabel;
 
     [Header("Inference Settings")]
     [SerializeField, Range(0, 1)] float iouThreshold = 0.5f;
@@ -56,11 +58,16 @@ public class RunYOLO8n : MonoBehaviour
     List<GameObject> boxPool = new List<GameObject>();
 
     // You can define this as a member variable or inside the function.
-    List<string> allowedFoodItems = new List<string> {
-    "banana", "apple", "sandwich", "orange",
-    "broccoli", "carrot", "hot dog", "pizza",
-    "donut", "cake"
-};
+    List<string> allowedItems = new List<string> {
+    "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat", 
+    "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "backpack", 
+    "umbrella", "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard", "sports ball", 
+    "kite", "baseball bat", "baseball glove", "skateboard", "surfboard", "tennis racket", "bottle", 
+    "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple", "sandwich", "orange", "broccoli", 
+    "carrot", "hot dog", "pizza", "donut", "cake", "chair", "sofa", "potted plant", "bed", "dining table", "toilet", 
+    "tv monitor", "laptop", "mouse", "remote", "keyboard", "cell phone", "microwave", "oven", "toaster", "sink", "refrigerator", 
+    "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"
+    };
 
 
     void Start()
@@ -70,6 +77,11 @@ public class RunYOLO8n : MonoBehaviour
         ops = WorkerFactory.CreateOps(backend, null);
 
         labels = labelsAsset.text.Split('\n');
+        for (int i = 0; i < labels.Length; i++)
+        {
+            labels[i] = labels[i].Trim();
+        }
+
 
         model = ModelLoader.Load(modelAsset);
         ModifyModel();
@@ -163,21 +175,19 @@ public class RunYOLO8n : MonoBehaviour
         float scaleX = displayImage.rectTransform.rect.width / imageWidth;
         float scaleY = displayImage.rectTransform.rect.height / imageHeight;
 
-        float maxConfidence = 0;
-        string bestLabel = "N/A";
 
         for (int n = 0; n < output.shape[1]; n++)
         {
             float currentConfidence = gatheredScores[0, n];
             string currentLabel = labels[labelIDs[0, 0, n]];
 
-            //if (!allowedFoodItems.Contains(currentLabel.ToLower()))
+            //if (!allowedItems.Contains(currentLabel.ToLower()))
             //{
             //    continue; // Skip this detection
             //}
 
-            if (allowedFoodItems.Contains(currentLabel))
-            {
+            //if (allowedItems.Contains(currentLabel))
+            //{
                DrawBox(
                     new Vector2(output[0, n, 0], output[0, n, 1]),
                     new Vector2(output[0, n, 2], output[0, n, 3]),
@@ -185,18 +195,20 @@ public class RunYOLO8n : MonoBehaviour
                     n,
                     scaleX,
                     scaleY);
-                UpdateLabel(currentLabel);
-            }
+                    if (allowedItems.Contains(currentLabel, StringComparer.OrdinalIgnoreCase))
+                    {
+                        UpdateLabel(currentLabel);
+                    }
 
 
-            if (currentConfidence > maxConfidence)
-            {
-                maxConfidence = currentConfidence;
-                bestLabel = currentLabel;
-            }
+            //}
         }
-
-       // foodLabel.text = bestLabel;
+        StartCoroutine(DeleteBoundingBoxes());
+    }
+    IEnumerator DeleteBoundingBoxes()
+    {
+        yield return new WaitForSeconds(2f);
+        ClearAnnotations();
     }
 
     void DrawBox(Vector2 center, Vector2 size, string label, int id, float scaleX, float scaleY)
@@ -206,8 +218,6 @@ public class RunYOLO8n : MonoBehaviour
         panel.transform.localPosition = new Vector3(center.x * scaleX - displayImage.rectTransform.rect.width / 2, -(center.y * scaleY - displayImage.rectTransform.rect.height / 2));
         panel.GetComponent<RectTransform>().sizeDelta = new Vector2(size.x * scaleX, size.y * scaleY);
         panel.GetComponentInChildren<Text>().text = label;
-
-
     }
 
     GameObject CreateNewBox()
@@ -227,8 +237,8 @@ public class RunYOLO8n : MonoBehaviour
 
     void ClearAnnotations() => boxPool.ForEach(box => box.SetActive(false));
 
-    void UpdateLabel(string label) {
-        foodLabel.text = label;
+    void UpdateLabel(string l) {
+        objectLabel.text = l;
     }
 
     void OnDestroy()
