@@ -57,6 +57,9 @@ public class RunYOLO8n : MonoBehaviour
 
     public Button runMLButton;
     private Text buttonText;
+    public APIManager apimanager;
+    private List<string> last3Labels = new List<string>();
+
 
     List<GameObject> boxPool = new List<GameObject>();
 
@@ -229,41 +232,56 @@ public class RunYOLO8n : MonoBehaviour
         float scaleX = displayImage.rectTransform.rect.width / imageWidth;
         float scaleY = displayImage.rectTransform.rect.height / imageHeight;
 
+        string firstDetectedLabelThisFrame = null;
 
         for (int n = 0; n < output.shape[1]; n++)
         {
             float currentConfidence = gatheredScores[0, n];
             string currentLabel = labels[labelIDs[0, 0, n]];
 
-            //if (!allowedItems.Contains(currentLabel.ToLower()))
-            //{
-            //    continue; // Skip this detection
-            //}
+            DrawBox(
+                new Vector2(output[0, n, 0], output[0, n, 1]),
+                new Vector2(output[0, n, 2], output[0, n, 3]),
+                currentLabel,
+                n,
+                scaleX,
+                scaleY
+            );
 
-            //if (allowedItems.Contains(currentLabel))
-            //{
-               DrawBox(
-                    new Vector2(output[0, n, 0], output[0, n, 1]),
-                    new Vector2(output[0, n, 2], output[0, n, 3]),
-                    currentLabel,
-                    n,
-                    scaleX,
-                    scaleY);
-                    if (allowedItems.Contains(currentLabel, StringComparer.OrdinalIgnoreCase))
-                    {
-                        UpdateLabel(currentLabel);
-                    }
-
-
-            //}
+            if (firstDetectedLabelThisFrame == null && allowedItems.Contains(currentLabel, StringComparer.OrdinalIgnoreCase))
+            {
+                firstDetectedLabelThisFrame = currentLabel;
+            }
         }
+
+        // Only update last3Labels once per ExecuteML call
+        if (firstDetectedLabelThisFrame != null)
+        {
+            UpdateLabel(firstDetectedLabelThisFrame);
+        }
+
         StartCoroutine(DeleteBoundingBoxes());
+        CheckConsecutiveLabels();
     }
+
     IEnumerator DeleteBoundingBoxes()
     {
         yield return new WaitForSeconds(2f);
         ClearAnnotations();
     }
+    void CheckConsecutiveLabels()
+    {
+        if (last3Labels.Count < 3)
+            return;
+
+        if (last3Labels.All(label => label == last3Labels[0]))
+        {
+            runML();
+            apimanager.startGASCoroutine();
+            last3Labels.Clear(); // Optional: clear after triggering
+        }
+    }
+
 
     void DrawBox(Vector2 center, Vector2 size, string label, int id, float scaleX, float scaleY)
     {
@@ -291,9 +309,17 @@ public class RunYOLO8n : MonoBehaviour
 
     void ClearAnnotations() => boxPool.ForEach(box => box.SetActive(false));
 
-    void UpdateLabel(string l) {
+    void UpdateLabel(string l)
+    {
         objectLabel.text = l;
+        apimanager.SetDetectedObject(l);
+
+        last3Labels.Add(l);
+        if (last3Labels.Count > 3)
+            last3Labels.RemoveAt(0);
     }
+
+
 
     void OnDestroy()
     {

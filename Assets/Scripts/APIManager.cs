@@ -13,20 +13,16 @@ public class APIManager : MonoBehaviour
     public TextMeshProUGUI infoText;
     public TextMeshProUGUI itemText;
 
-    private void Update()
+    public void SetDetectedObject(string detectedObject)
     {
-        /*
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(SendDataToGAS());
-        }
-        */
+        itemText.text = detectedObject;
     }
+
     public void startGASCoroutine()
     {
         StartCoroutine(SendDataToGAS());
     }
- 
+    
     private IEnumerator SendDataToGAS()
     {
         /*
@@ -37,7 +33,32 @@ public class APIManager : MonoBehaviour
             yield break; // Stop execution if no object is detected
         }
         */
-        string fullPrompt = $"Please provide a concise overview of a " + itemText.text +  " using the following template:   Object: [Object Name] Description: [Brief description of the object] Origin: [Where it's commonly used or originally from] Common Uses: [Typical uses of object] Pricing: [How much it usually costs in USD]  Keep the summary minimal and user-friendly. Also do not use bold font at all, meaning no ** around the headers like fruit. Also please add a blank line of space in between each section. If it is edible, mention taste, nutrition or allergies (whatever applies the most)";
+        if (string.IsNullOrEmpty(itemText.text))
+        {
+            yield break;
+        }
+        string fullPrompt = $@"You are an AI assistant helping to provide concise overviews of physical, inanimate objects detected by a vision model.
+        
+        Please provide a concise overview of the following object: [" + itemText.text + @"]
+
+        Use the following template:
+        Object: [Object Name]
+
+        Description: [Brief description of the object]
+
+        Origin: [Where it’s commonly used or originally from]
+
+        Common Uses: [Typical uses of the object]
+
+        Pricing: [How much it usually costs in USD]
+
+        If the object is a food item or edible, mention relevant details such as taste, nutritional value, or common allergens in the Description section. Otherwise, exclude any food-related information.
+
+        Do not use bold font or any special formatting. Leave a blank line of space between each section.
+
+        If no object is specified after 'following object:', do not provide a response.";
+        
+
         WWWForm form = new WWWForm();
         form.AddField("parameter", fullPrompt); // changed to detectedObject
         UnityWebRequest www = UnityWebRequest.Post(gasURL, form);
