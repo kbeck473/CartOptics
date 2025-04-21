@@ -336,11 +336,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 32
   m_RaycastTriggerInteraction: 1
---- !u!1 &152532667 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1327300266909334104, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
-  m_PrefabInstance: {fileID: 1153733732}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &269962645
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,9 +717,11 @@ MonoBehaviour:
   displayImage: {fileID: 0}
   boxTexture: {fileID: 21300000, guid: f0cd988bca7624c4cbf47ad59ccec26c, type: 3}
   font: {fileID: 12800000, guid: f7d59fc35e69b3448ada4ee72d16fd2d, type: 3}
-  foodLabel: {fileID: 129653494}
+  objectLabel: {fileID: 0}
   iouThreshold: 0.103
   scoreThreshold: 0.107
+  runMLButton: {fileID: 0}
+  apimanager: {fileID: 0}
 --- !u!1 &292979460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,7 +1543,7 @@ PrefabInstance:
       objectReference: {fileID: 292562491}
     - target: {fileID: 4014267703844950065, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
       propertyPath: RotationSensitivity
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4014267704139081642, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
       propertyPath: m_Name
@@ -1628,6 +1625,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Qualcomm.Snapdragon.Spaces.Samples.FusionSceneManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 6425775330642787927, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: addButton
+      value: 
+      objectReference: {fileID: 269962647}
+    - target: {fileID: 6425775330642787927, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: deleteButton
+      value: 
+      objectReference: {fileID: 269962647}
+    - target: {fileID: 6425775330642787927, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: detectButton
+      value: 
+      objectReference: {fileID: 269962647}
     - target: {fileID: 6425775331065108610, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1639,6 +1648,22 @@ PrefabInstance:
     - target: {fileID: 6425775331065108610, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Qualcomm.Snapdragon.Spaces.Samples.FusionSceneManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425775331337543140, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425775331337543140, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 2250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425775331337543140, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425775331337543140, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6425775331479531086, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1677,7 +1702,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6425775331065108620, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+    - {fileID: 6425775329818964156, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+    - {fileID: 1327300266909334104, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+    - {fileID: 6425775330974921436, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
@@ -1885,16 +1914,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1. Look at an object. Your AR glasses will automatically detect what you
-    are looking at.
+  m_text: '1. Hold the phone screen to press the selected button. Tap the screen
+    to switch which button is selected.
 
 
-    2. View instant info. AI-generated details about the item
-    appear on your display.
+    2. After pressing detect, look at an
+    object. Your AR glasses will automatically detect what you are looking at.
 
 
-    3. Tap to interact. Use simple buttons to either
-    add the detected object to the Virtual Cart, or Generate More Info to learn more!'
+    3.
+    AI-generated details about the item appear on your display.
+
+
+    4. Use buttons
+    to either add or delete the detected object from the Virtual Cart!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1921,8 +1954,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65
-  m_fontSizeBase: 65
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2825,11 +2858,11 @@ PrefabInstance:
     - target: {fileID: 5503478269447054186, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRAvailable.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 152532667}
+      objectReference: {fileID: 0}
     - target: {fileID: 5503478269447054186, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRAvailable.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 152532667}
+      objectReference: {fileID: 0}
     - target: {fileID: 5503478269447054186, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRUnavailable.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
@@ -2849,11 +2882,11 @@ PrefabInstance:
     - target: {fileID: 5503478269447054186, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRUnavailable.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 152532667}
+      objectReference: {fileID: 0}
     - target: {fileID: 5503478269447054186, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRUnavailable.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 152532667}
+      objectReference: {fileID: 0}
     - target: {fileID: 5503478269447054186, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnHostViewEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -3073,7 +3106,7 @@ PrefabInstance:
     - target: {fileID: 8913207258796321652, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRAvailable.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 152532667}
+      objectReference: {fileID: 0}
     - target: {fileID: 8913207258796321652, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRUnavailable.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 6
@@ -3109,7 +3142,7 @@ PrefabInstance:
     - target: {fileID: 8913207258796321652, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRUnavailable.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 152532667}
+      objectReference: {fileID: 0}
     - target: {fileID: 8913207258796321652, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRUnavailable.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3132,7 +3165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8913207258796321652, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8913207258796321652, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRUnavailable.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName

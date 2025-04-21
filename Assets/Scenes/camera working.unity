@@ -587,7 +587,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: No detection
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1182,7 +1182,7 @@ GameObject:
   - component: {fileID: 292562493}
   - component: {fileID: 292562492}
   - component: {fileID: 292562497}
-  - component: {fileID: 292562496}
+  - component: {fileID: 292562499}
   - component: {fileID: 292562498}
   m_Layer: 0
   m_Name: Main Camera
@@ -1289,7 +1289,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1160147264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &292562496
+--- !u!114 &292562497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292562490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dfaad3e72d3eee4cb8eb5bfa248ccb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &292562498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292562490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2c009b47183704a8dd73f45a7aa13f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelAsset: {fileID: 5022602860645237092, guid: 35ab056a4ab5ddf409034b69343a36d9, type: 3}
+  labelsAsset: {fileID: 4900000, guid: bbb3246448abc064898303cf79e0dff0, type: 3}
+  _cameraManager: {fileID: 292562493}
+  displayImage: {fileID: 1331568824}
+  boxTexture: {fileID: 21300000, guid: f0cd988bca7624c4cbf47ad59ccec26c, type: 3}
+  font: {fileID: 12800000, guid: f7d59fc35e69b3448ada4ee72d16fd2d, type: 3}
+  objectLabel: {fileID: 129653494}
+  iouThreshold: 0.5
+  scoreThreshold: 0.1
+  runMLButton: {fileID: 269962647}
+  apimanager: {fileID: 872251927}
+--- !u!114 &292562499
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1374,41 +1409,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
---- !u!114 &292562497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292562490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dfaad3e72d3eee4cb8eb5bfa248ccb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &292562498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292562490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f2c009b47183704a8dd73f45a7aa13f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 35ab056a4ab5ddf409034b69343a36d9, type: 3}
-  labelsAsset: {fileID: 4900000, guid: bbb3246448abc064898303cf79e0dff0, type: 3}
-  _cameraManager: {fileID: 292562493}
-  displayImage: {fileID: 1331568824}
-  boxTexture: {fileID: 21300000, guid: f0cd988bca7624c4cbf47ad59ccec26c, type: 3}
-  font: {fileID: 12800000, guid: f7d59fc35e69b3448ada4ee72d16fd2d, type: 3}
-  objectLabel: {fileID: 129653494}
-  iouThreshold: 0.5
-  scoreThreshold: 0.1
-  runMLButton: {fileID: 269962647}
-  apimanager: {fileID: 872251927}
 --- !u!1 &292979460
 GameObject:
   m_ObjectHideFlags: 0
@@ -2714,6 +2714,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Qualcomm.Snapdragon.Spaces.Samples.FusionSceneManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 6425775330642787927, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: addButton
+      value: 
+      objectReference: {fileID: 351404582}
+    - target: {fileID: 6425775330642787927, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: deleteButton
+      value: 
+      objectReference: {fileID: 525937730}
+    - target: {fileID: 6425775330642787927, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: detectButton
+      value: 
+      objectReference: {fileID: 269962647}
     - target: {fileID: 6425775330661369058, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
       propertyPath: m_SizeDelta.y
       value: 1550
@@ -2739,12 +2751,20 @@ PrefabInstance:
       value: Qualcomm.Snapdragon.Spaces.Samples.FusionSceneManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6425775331337543140, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425775331337543140, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1650
+      value: 2250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425775331337543140, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6425775331337543140, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -245
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6425775331479531086, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2790,6 +2810,7 @@ PrefabInstance:
     - {fileID: 6425775330584146674, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
     - {fileID: 6425775329818964156, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
     - {fileID: 1327300266909334104, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
+    - {fileID: 6425775330974921436, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0056cf27aeed8194aa2fb226219a58e7, type: 3}
@@ -4493,7 +4514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8913207258796321652, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnOpenXRStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8913207258796321652, guid: e4651c37cd8805542a5accb8b8d49704, type: 3}
       propertyPath: OnHostViewDisabled.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
