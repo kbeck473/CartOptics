@@ -106,7 +106,6 @@ MonoBehaviour:
   - {fileID: 7508819205746980769}
   - {fileID: 8345683591960226258}
   - {fileID: 6914378650175518449}
-  - {fileID: -3116149222320102554}
   - {fileID: 190804415283872200}
   - {fileID: 6665918960933622840}
   - {fileID: -5905609949379030947}
@@ -115,11 +114,7 @@ MonoBehaviour:
   - {fileID: -4949539743569182547}
   - {fileID: 3638256550562278113}
   - {fileID: -1927398535144191985}
-  - {fileID: 6645241006640920910}
   m_renderMode: 1
-  m_autoColorSubmissionMode: 1
-  m_colorSubmissionModes:
-    m_List: 00000000
   m_depthSubmissionMode: 0
   m_optimizeBufferDiscards: 0
   m_symmetricProjection: 0
@@ -225,9 +220,9 @@ MonoBehaviour:
   - {fileID: 6624739387433973398}
   - {fileID: 4435237203740087168}
   - {fileID: -3831411137784449516}
-  - {fileID: 3791320168902223155}
   - {fileID: 6009531333243167752}
   - {fileID: 386747393759961154}
+  - {fileID: 3791320168902223155}
   - {fileID: -2437454455246658322}
   - {fileID: -3346024561653043980}
   - {fileID: 8487895757148193266}
@@ -235,26 +230,21 @@ MonoBehaviour:
   - {fileID: 4120886258343897128}
   - {fileID: -425711651546554121}
   - {fileID: -3212610879133709209}
-  - {fileID: 6637413800007178673}
   - {fileID: -342578107739639852}
   - {fileID: -2755901235969238783}
-  - {fileID: 650343714553646774}
   - {fileID: 6625936693687760929}
   - {fileID: 3045987518833715413}
   - {fileID: 1329114529857942939}
+  - {fileID: 642670098155171116}
   - {fileID: 6541173135202390471}
   - {fileID: 4307995067390089800}
   - {fileID: -7414418262831974456}
   - {fileID: -419703179758495017}
   - {fileID: 2481519198709079450}
+  - {fileID: 650343714553646774}
   - {fileID: 5956749965658020425}
   - {fileID: -5628010460735154310}
-  - {fileID: 2864337711277237318}
-  - {fileID: 642670098155171116}
   m_renderMode: 1
-  m_autoColorSubmissionMode: 1
-  m_colorSubmissionModes:
-    m_List: 00000000
   m_depthSubmissionMode: 0
   m_optimizeBufferDiscards: 0
   m_symmetricProjection: 0
@@ -349,7 +339,6 @@ MonoBehaviour:
     enabled: 1
   forceRemoveInternetPermission: 0
   symmetricProjection: 0
-  foveatedRenderingApi: 0
   systemSplashScreen: {fileID: 0}
   optimizeBufferDiscards: 1
   lateLatchingMode: 0
@@ -367,6 +356,7 @@ MonoBehaviour:
   m_Name: MetaQuestTouchPlusControllerProfile Standalone
   m_EditorClassIdentifier: 
   m_enabled: 0
+  <failedInitialization>k__BackingField: 0
   nameUi: Meta Quest Touch Plus Controller Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.metaquestplus
@@ -687,6 +677,7 @@ MonoBehaviour:
   m_Name: XrPerformanceSettingsFeature Android
   m_EditorClassIdentifier: 
   m_enabled: 0
+  <failedInitialization>k__BackingField: 0
   nameUi: XR Performance Settings
   version: 1.0.0
   featureIdInternal: com.unity.openxr.feature.extension.performance_settings
@@ -990,6 +981,7 @@ MonoBehaviour:
   m_Name: MetaQuestTouchPlusControllerProfile Android
   m_EditorClassIdentifier: 
   m_enabled: 0
+  <failedInitialization>k__BackingField: 0
   nameUi: Meta Quest Touch Plus Controller Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.metaquestplus
@@ -1010,6 +1002,7 @@ MonoBehaviour:
   m_Name: XrPerformanceSettingsFeature Standalone
   m_EditorClassIdentifier: 
   m_enabled: 0
+  <failedInitialization>k__BackingField: 0
   nameUi: XR Performance Settings
   version: 1.0.0
   featureIdInternal: com.unity.openxr.feature.extension.performance_settings
