@@ -44,9 +44,6 @@ An augmented reality (AR) and generative AI-powered grocery assistant developed 
   - *Composite* – Smart cart item structure
   - *Singleton* – Gemini API manager
   - *Builder* – Category-specific prompt construction
-- **User Interface**:
-  - Screen-fixed overlays with item sliders and dynamic info cards
-  - Gesture interaction and simplified cart checkout workflow
 
 ---
 
