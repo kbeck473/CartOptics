@@ -1,6 +1,6 @@
 # 🛒 CartOptics – AR Grocery Assistant
 
-An augmented reality (AR) and generative AI-powered grocery assistant developed using **Qualcomm Snapdragon Spaces** and **Unity**. Designed to transform the in-store shopping experience, CartOptics uses real-time object detection and multimodal AI to deliver contextual product information through a head-mounted display (HMD).
+An augmented reality (AR) and generative AI-powered grocery assistant developed in collaboration Qualcomm and using **Qualcomm Snapdragon Spaces** and **Unity**. Designed to transform the in-store shopping experience, CartOptics uses real-time object detection and multimodal AI to deliver contextual product information through a head-mounted display (HMD).
 
 ---
 
@@ -115,4 +115,4 @@ Test cases and execution reports are included in the `/testing` directory for re
 
 ---
 
-> CSU-SM-CSIS-30-2025-SE-001-Team-005 • February 2025 • Version 5.0
+> CSU-SM-CSIS-30-2025-SE-001-Team-005 • May 2025 • Version 5.0
