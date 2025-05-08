@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2378,7 +2379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cbc9011d153ba9409e69512bdfb239b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gasURL: https://script.google.com/macros/s/AKfycbxNYUrVg_RvaSj6yGEMVO3M2-G2goVp3iIKqdsgyPjUaZdhZmL7m728VpyKrZqxE2zP/exec
+  gasURL: https://script.google.com/macros/s/AKfycbyU8oBU3MmwKu57CoDEy6A7IBE9vdF1vzL5MSaxP1f9wTRLTs2RTf3sD1eVNVhJ7GJR/exec
   infoText: {fileID: 64850833}
   itemText: {fileID: 129653494}
 --- !u!4 &872251928
