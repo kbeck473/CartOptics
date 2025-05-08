@@ -1,103 +1,115 @@
-# 🛒 AR Grocery Assistant
+# 🛒 CartOptics – AR Grocery Assistant
 
-An augmented reality (AR) and generative AI-powered shopping assistant developed using Qualcomm Snapdragon Spaces and Unity. Designed to elevate in-store shopping, the system uses real-time object recognition and AI to provide detailed product information through a head-mounted display (HMD).
+An augmented reality (AR) and generative AI-powered grocery assistant developed in collaboration with Qualcomm and using **Qualcomm Snapdragon Spaces** and **Unity**. Designed to transform the in-store shopping experience, CartOptics uses real-time object detection and multimodal AI to deliver contextual product information through a head-mounted display (HMD).
+
+---
+
+![CartOptics Team at Qualcomm](images/portfoliocartoptics.jpg)
 
 ---
 
 ## 📌 Overview
 
-The AR Grocery Assistant enhances how users interact with products while shopping by overlaying digital information—such as nutritional facts, pricing, and allergen data—on top of recognized grocery items. The system leverages on-device AR for seamless tracking and cloud-based AI for product-specific insights, all displayed in an intuitive user interface.
+**CartOptics** overlays real-time nutritional facts, pricing, and allergen data directly onto grocery items viewed through AR glasses. Combining on-device AR for spatial tracking and cloud-based AI for data generation, the system provides hands-free, personalized, and privacy-conscious assistance throughout the shopping journey.
 
 ---
 
-## 🧠 Core Features
+## 🧠 Key Features
 
-- 📷 **Real-time object detection** via YOLOv8 and Snapdragon Spaces
-- 🧠 **Generative AI integration** using Google Gemini to provide rich, context-aware item data
-- 🛒 **Smart cart management** with interactive visual elements
-- 🔐 **Privacy-conscious architecture**: no data stored or sold without consent
-- 🔁 **Dual Render Fusion** for simultaneous display on both phone and AR headset
-- 🧭 **UI designed for efficiency**: minimal clutter and easy navigation
-
----
-
-## ⚙️ Tech Stack
-
-- **Unity (C#)** – Development environment
-- **Snapdragon Spaces SDK** – AR integration and spatial tracking
-- **YOLOv8** – Real-time object detection
-- **Google Gemini API** – Generative AI for contextual responses
-- **ONNX / Barracuda** – Model integration and on-device inference
-- **Git** – Version control
+- 🔎 **Real-Time Object Detection** — Powered by YOLOv8n and integrated with Snapdragon Spaces for in-view recognition
+- 🤖 **Generative AI Integration** — Uses Google Gemini API to deliver contextual product metadata on demand
+- 🛒 **Smart Cart System** — Users can manage cart contents and view item history with screen-level overlays
+- 🔁 **Dual Render Fusion** — Simultaneous rendering on AR headset and mobile device for testing and usability
+- 🧭 **Minimalist AR UI** — Focused on clarity, fast response, and non-obtrusive visual presentation
+- 🔐 **Privacy First** — No data stored or transmitted without user consent; GDPR/CCPA compliant architecture
 
 ---
 
-## 👥 Project Team
+## ⚙️ Technology Stack
 
-This project was developed as a capstone for the **Software Engineering program** at **California State University, San Marcos**.
+- **Unity (C#)** – Core development environment
+- **Snapdragon Spaces SDK** – AR integration and spatial awareness
+- **YOLOv8 (Ultralytics)** – Object detection engine
+- **Google Gemini API** – Generative AI pipeline
+- **ONNX + Unity Barracuda** – On-device model inference
+- **Git** – Version control and collaboration
+
+---
+
+## 🏗️ System Architecture
+
+- **Model-View-Controller (MVC)** with clean architecture design
+- **Design Patterns**:
+  - *Strategy* – Modular object info generation
+  - *Composite* – Smart cart item structure
+  - *Singleton* – Gemini API manager
+  - *Builder* – Category-specific prompt construction
+
+---
+
+## 🖼️ Demo & UI
+
+### CartOptics Branding
+![CartOptics Shirt](images/shirt%20photo.JPG)
+
+### In-Use Demo
+![Detected Apple](images/DemoSample.png)
+
+### AR UI Screens
+![UI Screens](images/UISample.png)
+
+---
+
+## 👥 Team & Acknowledgments
+
+This project was developed as part of the **CSUSM Software Engineering Capstone**.
 
 ### Developers
-- **Aaron Edward Hamilton** – Software Engineer  
-- **Elijah Esteban Munoz** – Software Engineer  
-- **Kyle Anthony Beck** – Software Engineer  
-- **Mason Thomas Vick** – Software Engineer  
+- Aaron Edward Hamilton  
+- Elijah Esteban Munoz  
+- Kyle Anthony Beck  
+- Mason Thomas Vick  
 
-### Faculty & Industry Involvement
-- **Course Instructor**: Simon Fan  
+### Mentors & Support
+- **Instructor**: Simon Fan  
 - **Faculty Advisor**: Yongjie Zheng  
 - **Industry Sponsor**: Qualcomm  
-- **Project Mentor**: Karen Weeks  
-- **Project Proposer**: Emma Lacey  
+- **Mentor**: Karen Weeks  
 
 ---
 
-## 🏗️ Architecture Highlights
+## 🧪 Testing & Validation
 
-- **Model-View-Controller (MVC)** pattern with clean architecture principles
-- **Design Patterns**:
-  - Strategy Pattern for generating and updating item info
-  - Composite Pattern for cart-item relationships
-  - Singleton for API management
-  - Builder Pattern for category-specific prompt generation
-- **User Interface**:
-  - Screen-level overlays (not world-locked) for accessibility
-  - Visual slider to view item history and cart
+- **NUnit** and Unity Test Framework used for automation and unit testing
+- Validated key functions including:
+  - Dual render fusion
+  - Object recognition accuracy
+  - Prompt-to-response integrity via Google Gemini
+  - API call rate-limiting
+  - Seamless HMD-camera feed integration
 
----
-
-## 🧭 Deployment Overview
-
-To run the application:
-
-1. Clone the repository and open it in Unity.
-2. Import the Snapdragon Spaces SDK and required packages (YOLO, ONNX).
-3. Add your Google Gemini API credentials.
-4. Build the project for Android.
-5. Install the APK on a Snapdragon Spaces-compatible Android device.
-6. Connect the device to a Lenovo ThinkReality A3 HMD or equivalent.
+Test cases and execution reports are included in the `/testing` directory for reproducibility.
 
 ---
 
-## 🙌 Acknowledgments
+## 🚀 Deployment Guide
 
-We are deeply grateful to:
-
-- **Qualcomm** for providing Snapdragon Spaces hardware and platform support  
-- **Karen Weeks**, our mentor, for consistent guidance throughout development  
-- **Dr. Yongjie Zheng**, for helping define project scope and system requirements  
-- **Professor Simon Fan**, for teaching Agile project management fundamentals  
-- **Emma Lacey**, for sponsoring and proposing the project vision  
+1. Clone this repository and open in Unity (2022.3+ recommended).
+2. Install Snapdragon Spaces SDK and Unity Barracuda.
+3. Import YOLOv8n ONNX model and integrate into object detection pipeline.
+4. Add your Google Gemini API credentials in the designated script.
+5. Build APK and deploy to Snapdragon Spaces-compatible Android device.
+6. Connect to a Lenovo ThinkReality A3 or similar HMD for full experience.
 
 ---
 
-## 🔗 References
+## 📚 References
 
 - [Snapdragon Spaces Documentation](https://docs.spaces.qualcomm.com/unity/)
-- [Unity Barracuda - Neural Network Inference](https://docs.unity3d.com/Packages/com.unity.barracuda)
-- [YOLOv8 - Ultralytics](https://docs.ultralytics.com)
-- [ONNX Model Integration](https://onnx.ai/)
+- [Unity Barracuda Docs](https://docs.unity3d.com/Packages/com.unity.barracuda)
+- [Ultralytics YOLOv8](https://docs.ultralytics.com)
 - [Google Gemini API](https://developers.google.com/)
 
 ---
 
-> CSU-SM-CSIS-30-2025-SE-001-Team-005 • February 2025
+> CSU-SM-CSIS-30-2025-SE-001-Team-005 • May 2025 • Version 5.0
